@@ -1,80 +1,76 @@
+'use strict';
 
-
-const studentCards = [
-    {
-        name: "Ginny Weasley",
-        house: "Gryffindor",
-    },
-    {
-        name: "Ginny Weasley",
-        house: "Gryffindor",
-    },
-    {
-        name: "Ginny Weasley",
-        house: "Gryffindor",
-    },
-    {
-        name: "Ginny Weasley",
-        house: "Gryffindor",
-    }
-]
-
-const houses = ['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff']
-
-
-const buildForm = () => {
-    
-    let domString = ''; 
-    domString += `<h2>Enter First Year's Name</h2>`
-    domString += `<form class=“form-inline”>
-    <div class=“form-group mb-2">
-    <label for=“staticStudent” class=“sr-only”>Student</label>
-      <input type=“text” readonly class=“form-control-plaintext” id=“staticStudent” value=“Student:“>
-    </div>
-   <div class=“form-group mx-sm-3 mb-2”>
-   <label for=“inputStudent" class=“sr-only”>Student Name</label>
-    <input type=“text” class=“form-control” id=“inputStudent” placeholder=“Hermione Granger”>
-    </div>
-  <button type=“submit” class=“btn btn-primary mb-2”>Sort!</button>
-</form>`
-
-  printToDom('form', domString);
-    
-}
-
-
-
-
-const buildCards = () => {
-    const randomHouse = houses[Math.floor(Math.random() * houses.length)]; 
-    let domString = '';
-
-    
-
-    domString += `<div class="card" style="width: 18rem;">
-                <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title">${inputStudent}</h5>
-                <p class="card-text">${randomHouse}</p>
-                <a href="#" class="btn btn-primary">Expel</a>
-                </div>
-                </div>`
-
-printToDom('student-cards', domString);
-}
-
-   
 
 const printToDom = (divId, textToPrint) => {
-    const selectedDiv = document.getElementById(divId);
-    selectedDiv.innerHTML = textToPrint;
+  const selectedDiv = document.getElementById(divId);
+  selectedDiv.innerHTML = textToPrint;
 }
 
+const houseArray = [
+  'Gryffindor',
+  'Hufflepuff',
+  'Ravenclaw',
+  'Slytherin'  
+]
+
+const studentArray = []
+
+const buildForm = () => {
+  let domString = '';
+
+  domString += `<h2 id="firstYear"> Enter First Year's Name<h2>`
+  domString += `<form class="form-inline">
+  <div class="form-group mb-2">
+    <label for="staticStudent" class="sr-only">Student</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticStudent" value="Student:">
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputStudent" class="sr-only">Student</label>
+    <input type="text" class="form-control" id="inputStudent" placeholder="Ron Weasley">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Sort!</button>
+</form>`
+
+      printToDom('studentForm', domString);
+
+      document.querySelector('#formBtn').addEventListener('click', buildStudent)
+      document.querySelector('#formBtn').addEventListener('click', buildCards)
+}
+
+const buildStudent = (e) => {
+  let buttonId = e.target.id;
+  let randomHouse = houseArray(Math.floor(Math.random() * houseArray.length));
+
+  if(buttonId === 'formBtn') {
+    studentArray.push({name: `${inputStudent.value}`, house: `${randomHouse}`})
+  }
+}
+
+const buildCards = (e) => {
+  let buttonId = e.target.id;
+  let domString = ''
+
+  if(buttonId === 'formBtn'){
+    for (let i = 0; i < studentArray.length; i++){
+      domString += `<div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-name">${studentArray[i].name}</h5>
+        <p class="card-text">${studentArray[i].house}</p>
+        <a href="#" class="btn btn-primary">Expel</a>
+      </div>
+    </div>`
+    } 
+   }
+
+   printToDom('studentCard', domString)
+}
 
 const buttonEvents = () => {
-    document.getElementById('jumbotron-btn').addEventListener('click', buildForm);
-    document.getElementById('form-btn').addEventListener('click', buildCards)
+  document.querySelector('#sortButton').addEventListener('click', buildForm)
 }
 
+const init = () => {
+  buttonEvents();
+}
 
-buttonEvents();
+init();
