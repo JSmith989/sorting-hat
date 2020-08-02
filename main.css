@@ -1,3 +1,39 @@
+/* 
+#740001	
+#ae0001	
+#eeba30	
+#d3a625	
+#000000 */
+
+
+
+
 body {
-    background-color: aquamarine;
+    background-color: #d3a625;
+}
+
+.jumbotron {
+    background-color: #740001;
+    color: #eeba30;
+}
+
+.card {
+    background-color: #000000 ;
+    border-radius: 20px;
+}
+
+.display-4 {
+    font-family: fantasy;
+
+}
+
+.card-name {
+    color: #ae0001;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.card-text {
+    font-family: fantasy;
+    color: #eeba30;
+
 }
