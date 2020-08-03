@@ -1,6 +1,6 @@
 # Sorting Hat
 
-This app allows you to input any name and randomly generate your house from Harry Potter. 
+This app allows you to input any name and randomly generate your house from Harry Potter. If no name is entered and you try to submit, an error message will appear. 
 <p><a href="https://hogwarts-sort.netlify.app"/>Which House Are You?</p>
 
 
